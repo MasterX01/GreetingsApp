@@ -33,4 +33,8 @@ public class GreetingService implements IGreetingService{
 		return greetingRepository.save(new Greeting(id, String.format(template, (user.getFirstName().isEmpty())? " World" : user.getFirstName())));
 	}
 
+	public void deleteGreetingById(long id) {
+		greetingRepository.deleteById(id);
+	}
+
 }

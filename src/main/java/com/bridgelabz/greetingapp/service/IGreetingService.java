@@ -13,4 +13,6 @@ public interface IGreetingService {
 
 	public Greeting updateGreeting(User user, long id);
 
+	public void deleteGreetingById(long id);
+
 }

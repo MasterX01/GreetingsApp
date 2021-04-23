@@ -6,6 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -74,6 +75,11 @@ public class GreetingController {
 		}
 		user.setFirstName(user.getFirstName());
 		return greetingService.updateGreeting(user, id);
+	}
+	
+	@DeleteMapping("/deletegreeting/{id}")
+	public void deleteGreeting(@PathVariable(name = "id") long id) {
+		greetingService.deleteGreetingById(id);
 	}
 
 }
