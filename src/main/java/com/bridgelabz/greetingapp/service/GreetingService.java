@@ -17,7 +17,7 @@ public class GreetingService implements IGreetingService{
 	private GreetingRepository greetingRepository;
 
 	public Greeting addGreeting(User user) {
-		String message = String.format(template, (user.getFirstName().isEmpty()) ? "Hello World" : user.getFirstName());
+		String message = String.format(template, (user.getFirstName().isEmpty()) ? " World" : user.getFirstName());
 		return greetingRepository.save(new Greeting(counter.incrementAndGet(), message));
 	}
 	
@@ -27,6 +27,10 @@ public class GreetingService implements IGreetingService{
 	
 	public Greeting findGreeting(long id) {
 		return greetingRepository.findById(id).get();
+	}
+	
+	public Greeting updateGreeting(User user, long id) {
+		return greetingRepository.save(new Greeting(id, String.format(template, (user.getFirstName().isEmpty())? " World" : user.getFirstName())));
 	}
 
 }
