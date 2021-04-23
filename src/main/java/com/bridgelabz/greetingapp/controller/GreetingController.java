@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -56,6 +57,11 @@ public class GreetingController {
 	public ResponseEntity<List<Greeting>> allGreetings(){
 		List<Greeting> messageList = greetingService.getGreetings();
 		return new ResponseEntity<>(messageList, HttpStatus.ACCEPTED);
+	}
+	
+	@GetMapping("/findgreeting/{id}")
+	public Greeting findGreeting(@PathVariable(name = "id") long id) {
+		return greetingService.findGreeting(id);
 	}
 
 }

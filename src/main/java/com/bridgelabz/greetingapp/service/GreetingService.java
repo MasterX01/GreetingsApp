@@ -23,7 +23,10 @@ public class GreetingService implements IGreetingService{
 	
 	public List<Greeting> getGreetings(){
 		return greetingRepository.findAll();
-
+	}
+	
+	public Greeting findGreeting(long id) {
+		return greetingRepository.findById(id).get();
 	}
 
 }
