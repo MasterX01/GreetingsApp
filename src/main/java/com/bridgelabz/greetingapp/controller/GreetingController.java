@@ -11,12 +11,32 @@ import com.bridgelabz.greetingapp.model.Greeting;
 @RestController
 public class GreetingController {
 
-	private static final String template = "Hello, %s!";
+	private static final String template = "Hello, %s !!!";
 	private final AtomicLong counter = new AtomicLong();
 	
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));		
+	}
+	
+	@GetMapping(" ")
+	public String blankGreeting() {
+		return "Hello Stranger!!!";
+	}
+	
+	@GetMapping("/greeting/")
+	public Greeting greetingForName(@RequestParam(value = "firstName", required = false) String firstName, @RequestParam(value = "lastName", required = false) String lastName) {
+		if(firstName == null && lastName == null) {
+			String msg = "World";
+			return new Greeting(counter.incrementAndGet(),String.format(template, msg));
+		}
+		if(firstName == null) {
+			return new Greeting(counter.incrementAndGet(),String.format(template, lastName));
+		}
+		if(lastName == null) {
+			return new Greeting(counter.incrementAndGet(),String.format(template, firstName));
+		}
+		return new Greeting(counter.incrementAndGet(), String.format(template, firstName + " " + lastName));
 	}
 	
 
