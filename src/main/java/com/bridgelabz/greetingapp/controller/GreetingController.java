@@ -27,8 +27,7 @@ public class GreetingController {
 	@GetMapping("/greeting/")
 	public Greeting greetingForName(@RequestParam(value = "firstName", required = false) String firstName, @RequestParam(value = "lastName", required = false) String lastName) {
 		if(firstName == null && lastName == null) {
-			String msg = "World";
-			return new Greeting(counter.incrementAndGet(),String.format(template, msg));
+			return new Greeting(counter.incrementAndGet(),String.format(template, "World"));
 		}
 		if(firstName == null) {
 			return new Greeting(counter.incrementAndGet(),String.format(template, lastName));
