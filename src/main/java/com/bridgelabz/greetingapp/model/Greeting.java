@@ -1,9 +1,20 @@
 package com.bridgelabz.greetingapp.model;
 
-public class Greeting {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-	private String message;
+@Entity
+public class Greeting {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long gId;
+	private String message;
+	
+	public Greeting() {	}
+	
 	public Greeting(long gId, String message) {
 		this.gId = gId;
 		this.message = message;
